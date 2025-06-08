@@ -1,0 +1,137 @@
+name: simple_random_chat
+description: "simple_random_chat"
+
+# Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.4 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Cupertino Icons
+  cupertino_icons: ^1.0.8
+
+  # riverpod
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # json
+  json_annotation: ^4.9.0
+
+  # freezed
+  freezed: ^2.5.8
+  freezed_annotation: ^2.4.4
+
+  # go_router
+  go_router: ^14.6.3
+
+  # log
+  logger: any
+
+  # env
+  flutter_dotenv: ^5.2.1
+
+  # UUID
+  uuid: ^4.5.1
+
+  # local_database
+  drift: ^2.23.1
+  sqlite3_flutter_libs: ^0.5.28
+  path_provider: ^2.1.5
+  path: ^1.9.0
+
+  # snack_bar
+  animated_snack_bar: ^0.4.0
+
+  # debounce
+  easy_debounce: ^2.0.3
+
+  # keyboard_actions
+  keyboard_actions: ^4.2.0
+
+  # intl
+  intl: ^0.20.1
+
+  # dio
+  dio: ^5.7.0
+
+  # firebase
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  firebase_storage: ^12.4.5
+
+  # secure storage
+  flutter_secure_storage: ^9.2.4
+
+  # device info
+  device_info_plus: ^11.2.0
+
+  # flutter_native_splash
+  flutter_native_splash: ^2.4.4
+
+  # lottie
+  lottie: ^3.3.1
+
+  # camera
+  camera: ^0.11.1
+  provider: ^6.1.4
+
+  # permission
+  permission_handler: ^11.4.0
+
+  # photo
+  photo_manager: ^3.6.3
+  photo_manager_image_provider: ^2.2.0
+
+  # svg
+  flutter_svg: ^2.1.0
+
+  # extended image
+  extended_image: ^9.1.0
+
+  # dotted
+  dotted_line_flutter: ^2.1.8
+
+  # expandable fab
+  flutter_expandable_fab: ^2.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  analyzer: 7.3.0
+  build_runner: ^2.4.15
+  riverpod_generator: ^2.6.3
+  custom_lint: ^0.7.0
+  riverpod_lint: ^2.6.3
+  flutter_lints: ^5.0.0
+  json_serializable: ^6.9.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/lotties/
+    - assets/icons/
+    - assets/icons/common/
+    - assets/icons/chat/
+
+
+  fonts:
+    - family: AppleSDGothicNeo
+      fonts:
+        - asset: assets/fonts/AppleSDGothicNeo/AppleSDGothicNeoR.ttf
+          weight: 400
+        - asset: assets/fonts/AppleSDGothicNeo/AppleSDGothicNeoM.ttf
+          weight: 500
+        - asset: assets/fonts/AppleSDGothicNeo/AppleSDGothicNeoSB.ttf
+          weight: 600
+        - asset: assets/fonts/AppleSDGothicNeo/AppleSDGothicNeoB.ttf
+          weight: 700
