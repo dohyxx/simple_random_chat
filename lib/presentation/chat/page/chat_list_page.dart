@@ -30,7 +30,14 @@ class ChatListPage extends ConsumerStatefulWidget {
 }
 
 class _ChatListPageState extends ConsumerState<ChatListPage> with ChatState {
-  final fabKey = GlobalKey<ExpandableFabState>();
+  late final GlobalKey<ExpandableFabState> fabKey;
+
+  @override
+  void initState() {
+    super.initState();
+
+    fabKey = GlobalKey<ExpandableFabState>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,6 @@ class _ChatListPageState extends ConsumerState<ChatListPage> with ChatState {
     return DefaultLayout(
       edgeInsets: EdgeInsets.symmetric(horizontal: 25),
       appBar: DefaultAppBar(
-        appBarHeight: 80,
         title: AppText.chat,
         titleSize: 20,
         actions: [
@@ -78,6 +84,10 @@ class _ChatListPageState extends ConsumerState<ChatListPage> with ChatState {
                   ),
                 ),
               ),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: SizedBox(),
+              )
             ],
           );
         },
@@ -85,45 +95,53 @@ class _ChatListPageState extends ConsumerState<ChatListPage> with ChatState {
         loading: () => Center(child: CupertinoActivityIndicator()),
       ),
       floatingActionButtonLocation: ExpandableFab.location,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(20),
-        child: ExpandableFab(
-          key: fabKey,
-          type: ExpandableFabType.up,
-          childrenAnimation: ExpandableFabAnimation.none,
-          distance: 60,
-          overlayStyle: ExpandableFabOverlayStyle(color: Colors.transparent),
-          openButtonBuilder: RotateFloatingActionButtonBuilder(
-            child: Icon(Icons.add, size: 28, color: Color(0xff403D3C)),
-            fabSize: ExpandableFabSize.small,
-            backgroundColor: AppText.defaultColor(),
-            shape: const CircleBorder(),
-          ),
-          closeButtonBuilder: FloatingActionButtonBuilder(
-            size: 56,
-            builder: (_, onPressed, progress) {
-              return FloatingActionButton(
-                highlightElevation: 20,
-                foregroundColor: AppText.defaultColor(),
-                disabledElevation: 20,
-                hoverColor: AppText.defaultColor(),
-                backgroundColor: AppText.defaultColor(),
-                mini: true,
-                splashColor: Colors.white24.withValues(alpha: 0.3),
-                shape: CircleBorder(),
-                onPressed: () => onPressed!(),
-                child: Icon(Icons.close, size: 25, color: Color(0xff403D3C)),
-              );
-            },
-          ),
-          children: [
-            _floatingComponent(
-              title: AppText.newChat,
-              onClick: () => NavigationHelper.push(RouteName.textConsultation),
-            ),
-          ],
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Icon(Icons.add),
+      // ),
+      floatingActionButton: state.maybeWhen(
+          data: (data) {
+            return Padding(
+              padding: const EdgeInsets.all(20),
+              child: ExpandableFab(
+                key: fabKey,
+                type: ExpandableFabType.up,
+                childrenAnimation: ExpandableFabAnimation.none,
+                distance: 60,
+                overlayStyle: ExpandableFabOverlayStyle(color: Colors.transparent),
+                openButtonBuilder: RotateFloatingActionButtonBuilder(
+                  child: Icon(Icons.add, size: 28, color: Color(0xff403D3C)),
+                  fabSize: ExpandableFabSize.small,
+                  backgroundColor: AppText.defaultColor(),
+                  shape: const CircleBorder(),
+                ),
+                closeButtonBuilder: FloatingActionButtonBuilder(
+                  size: 56,
+                  builder: (_, onPressed, progress) {
+                    return FloatingActionButton(
+                      highlightElevation: 20,
+                      foregroundColor: AppText.defaultColor(),
+                      disabledElevation: 20,
+                      hoverColor: AppText.defaultColor(),
+                      backgroundColor: AppText.defaultColor(),
+                      mini: true,
+                      splashColor: Colors.white24.withValues(alpha: 0.3),
+                      shape: CircleBorder(),
+                      onPressed: () => onPressed!(),
+                      child: Icon(Icons.close, size: 25, color: Color(0xff403D3C)),
+                    );
+                  },
+                ),
+                children: [
+                  _floatingComponent(
+                    title: AppText.newChat,
+                    onClick: () => NavigationHelper.push(RouteName.textConsultation),
+                  ),
+                ],
+              ),
+            );
+          },
+          orElse: () => SizedBox()),
     );
   }
 
@@ -166,9 +184,10 @@ class _ChatListPageState extends ConsumerState<ChatListPage> with ChatState {
   }
 }
 
+/// Empty List
 Widget _chatEmptyWidget() {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 200),
+    padding: const EdgeInsets.only(top: 200),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

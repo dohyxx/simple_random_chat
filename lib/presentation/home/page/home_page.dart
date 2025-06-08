@@ -14,32 +14,33 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
-        edgeInsets: EdgeInsets.all(20),
-        appBar: DefaultAppBar(
-          leading: SizedBox(),
-          title: "Home",
-        ),
-        body: CustomScrollView(
-          physics: ClampingScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FeatureButtonWidget(
-                      title: 'ChatRoom',
-                      icon: AppIcon.menu,
-                      onTap: () {
-                        NavigationHelper.push(RouteName.chatList);
-                      },
-                    ),
-                  ],
-                ),
+      edgeInsets: EdgeInsets.all(20),
+      appBar: DefaultAppBar(
+        leading: SizedBox(),
+        title: "Home",
+      ),
+      body: CustomScrollView(
+        physics: ClampingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FeatureButtonWidget(
+                    title: 'ChatRoom',
+                    icon: AppIcon.menu,
+                    onTap: () {
+                      NavigationHelper.push(RouteName.chatList);
+                    },
+                  ),
+                ],
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
